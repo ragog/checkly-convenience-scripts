@@ -10,7 +10,7 @@ do
   echo "Deleting group with ID: $guid"
   curl -s -X DELETE https://api.checklyhq.com/v1/check-groups/$guid \
   -H 'Accept: application/json' \
-  -H "Authorization: Bearer $1"
+  -H "Authorization: Bearer $1" &
 done
 
 echo 'Deleting checks...'
@@ -19,10 +19,10 @@ curl -s -X GET 'https://api.checklyhq.com/v1/checks?limit=100' \
  -H "Authorization: Bearer $1" | grep -Ewo '[[:xdigit:]]{8}(-[[:xdigit:]]{4}){3}-[[:xdigit:]]{12}' |
 while IFS= read -r guid
 do
-    echo "Deleting check with ID: $guid"
-    curl -s -X DELETE https://api.checklyhq.com/v1/checks/$guid \
+  echo "Deleting check with ID: $guid"
+  curl -s -X DELETE https://api.checklyhq.com/v1/checks/$guid \
   -H 'Accept: application/json' \
-  -H "Authorization: Bearer $1"
+  -H "Authorization: Bearer $1" &
 done
 
 echo 'Deleting alert channels...'
@@ -34,7 +34,7 @@ do
     echo "Deleting alert channel with ID: $guid"
     curl -s -X DELETE https://api.checklyhq.com/v1/alert-channels/$guid \
   -H 'Accept: application/json' \
-  -H "Authorization: Bearer $1"
+  -H "Authorization: Bearer $1" &
 done
 
 echo 'Deleting snippets...'
@@ -46,5 +46,5 @@ do
     echo "Deleting snippet with ID: $guid"
     curl -s -X DELETE https://api.checklyhq.com/v1/snippets/$guid \
   -H 'Accept: application/json' \
-  -H "Authorization: Bearer $1"
+  -H "Authorization: Bearer $1" &
 done
