@@ -28,7 +28,7 @@ done
 echo 'Deleting alert channels...'
 curl -s -X GET 'https://api.checklyhq.com/v1/alert-channels?limit=100' \
  -H 'Accept: application/json' \
- -H "Authorization: Bearer $1" | grep -Ewo '[[:xdigit:]]{4,6}' |
+ -H "Authorization: Bearer $1" | grep -Ewo '[[:xdigit:]]{5,6}' |
 while IFS= read -r guid
 do
     echo "Deleting alert channel with ID: $guid"
